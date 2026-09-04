@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.function.Consumer;
 
 /** 
  * MIT License
@@ -106,5 +107,41 @@ public class App {
     }
     public static void main(String[] args) {
         
+    }
+    static int[] bublesort(int[] vetor){
+        int temp;
+        boolean trocou = true;
+        for(int i = vetor.length - 1; (i > 0 && trocou) ; i--){ //ref
+            trocou = false;
+            for(int j = 0; j < i ; j++){ //comp
+                operacoes++;
+                if(vetor[j] < vetor[j + 1]){
+                    trocou = true;
+                    temp = vetor[j];
+                    vetor[j] = vetor[j + 1];
+                    vetor[j+ 1] = temp;
+                }
+            }
+        }
+        return vetor;
+    }
+    public static void testaVetoress(int[] tamanhoVetores, Consumer <int[]> funcao){
+        int tamVetor;
+        int[] vetor;
+        long inicio, termino;
+        double duracao;
+
+        for(int i = 0; i < tamanhosVetores.length; i++){
+            tamVetor = tamanhoVetores[i];
+            vetor = gerarVetor(tamVetor);
+            operacoes = 0;
+            inicio = System.nanoTime();
+            funcao.accept(vetor);
+            termino = System.nanoTime();
+            duracao = (double)(termino - inicio) * NANO_TO_MILLI;
+            System.out.printf("%,d; %,d; %.2f ms\n", tamVetor, operacoes, duracao);
+
+
+        }
     }
 }
