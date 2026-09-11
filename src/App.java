@@ -106,6 +106,33 @@ public class App {
         
     }
     public static void main(String[] args) {
+        int opcao = 4;
+        if (opcao == 1) {
+            System.out.println("\n===== CÓDIGO 1 =====");
+            testavetores(
+                    TamanhosTesteGrande,
+                    vetor -> codigo1(vetor)
+            );
+        } else if (opcao == 2) {
+            System.out.println("\n===== CÓDIGO 2 =====");
+            testavetores(
+                    TamanhosTesteGrande,
+                    vetor -> codigo2(vetor)
+            );
+        } else if (opcao == 3) {
+            System.out.println("\n===== CÓDIGO 3 =====");
+            testavetores(
+                    tamanhosTesteMedio,
+                    vetor -> codigo3(vetor)
+            );
+        } else if (opcao == 4) {
+            System.out.println("\n===== BUBBLE SORT =====");
+            testavetores(
+                    tamanhosTestePequeno,
+                    vetor -> bubblesort(vetor)
+            );
+        }
+    
         
     }
     static int[] bublesort(int[] vetor){
@@ -122,6 +149,21 @@ public class App {
                     vetor[j+ 1] = temp;
                 }
             }
+        }
+        return vetor;
+    }
+    static int[] insercao(int[] vetor){
+        int temp;
+        operacoes = 0;
+        for(int i = 1; i <= vetor.length - 1; i++){ //for de fora = referencia , comeca pela posicao 1 do vetor
+            temp = vetor[i];
+            int j = i - 1;
+            for(;j >= 0 && vetor[j] > temp; j --){//for de dentro = andar para tras
+                vetor[j + 1] = vetor[j];
+                operacoes++; 
+            }
+            vetor[j + 1] = temp;
+
         }
         return vetor;
     }
