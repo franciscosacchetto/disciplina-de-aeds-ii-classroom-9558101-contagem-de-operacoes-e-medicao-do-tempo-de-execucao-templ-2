@@ -21,6 +21,7 @@ public class App {
     static int quantosProdutos = 0;
 
     static Bubblesort<Produto> ordenador;
+    static Mergesort<Produto> ordenadormergesort;
 
     static void limparTela() {
         System.out.print("\033[H\033[2J");
@@ -135,11 +136,31 @@ public class App {
         
         System.out.println(mensagem);
     }
-    
+    static int exibirMenuOrdenacao() {
+        cabecalho();
+        System.out.println("Escolha o método de ordenação:");
+        System.out.println("1 - Bubblesort");
+        System.out.println("2 - Mergesort");
+        System.out.println("0 - Voltar");
+        
+        return lerOpcao("Digite sua opção: ", Integer.class);
+    }
     static void ordenarProdutos(){
+
+        int opcao;
     	
         cabecalho();
-        
+
+        opcao = exibirMenuOrdenacao();
+        switch (opcao) {
+            case 1 -> ordenador = new Bubblesort<>();
+            case 2 -> ordenador = new Mergesort<>();
+            default -> {
+                System.out.println("Opção inválida. Voltando ao menu principal.");
+                return;
+            }
+        }
+
         ordenador = new Bubblesort<>();
 
         produtosCadastrados = ordenador.ordenar(produtosCadastrados);        
